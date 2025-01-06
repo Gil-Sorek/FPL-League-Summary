@@ -45,6 +45,7 @@ For example, I used the following dictionary to create the visuals
 ### Fan Shirts
 Fan shirts are determined automatically from every manager FPL account settings (favourite team). In case no team was selected, it assigns a random club shirt.
 You can override this by redefining 'get_club' function as follows:
+
 `def get_club(id): return {4399125:"Arsenal", 1606327:"Man Utd", 262514:"Man City", 6697062:"Brighton", 4047743:"Man Utd", 957:"Man City", 247071:"Liverpool", 2513453:"Man City", 2232819:"Arsenal", 4242417:"Spurs", 5859886:"Liverpool", 1256987:"Chelsea", 6621645:"Spurs", 4081730:"Arsenal"}[id]`
 
 ## Output
