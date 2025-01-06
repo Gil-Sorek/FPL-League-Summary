@@ -1,7 +1,7 @@
 # FPL-League-Summary
- 
 
 This is an FPL gameweek summary for classic leagues between friends.
+
 Compare your ranks and points, including team value, hits, captain points, bench points, substitution points, transfer gains, money in-the-bank, etc.
 
 ![Weekly GW Summary](images/gw18.png)
@@ -24,6 +24,6 @@ Compare your ranks and points, including team value, hits, captain points, bench
 
 ## Configuration
 Set 'league_id' variable into your league's personal ID
+
 The league ID can be found within the fantasy website url under 'Leagues & Cups' after choosing your league
 ![League ID](images/league_id.png)
-
