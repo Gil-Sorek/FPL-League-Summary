@@ -32,15 +32,20 @@ The league ID can be found within the fantasy website url under 'Leagues & Cups'
 ### Managers Nickname
 For cleaner visuals, you may supply a dictionary with manager ids as keys and nicknames as values.
 For example, I used the following dictionary to create the visuals
+
 `def get_team_name(id): return {4399125:"Avidan", 1606327:"Itamar", 262514:"Ginosar", 6697062:"Amit", 4047743:"Fuji", 957:"Gool", 247071:"Woolf", 2513453:"Talash", 2232819:"Vaknin", 4242417:"Buchris", 5859886:"Adi", 1256987:"Casyopa", 6621645:"Pellinho", 4081730:"Oren"}[id]`
 
 ### Highlight Managers
 In case you want to highlight individual managers within the [Managers Comparison](#fpl-league-summary) plot,
 you can supply a dictionary with manager ids as keys and colors as values.
 For example, I used the following dictionary to create the visuals
+
 `highlight_keys = {957: "lime", 262514: "hotpink", 247071: "red", 2513453: "darkorange"}`
 
-### Fan Shirts (Work In Progress)
+### Fan Shirts
+Fan shirts are determined automatically from every manager FPL account settings (favourite team). In case no team was selected, it assigns a random club shirt.
+You can override this by redefining 'get_club' function as follows:
+`def get_club(id): return {4399125:"Arsenal", 1606327:"Man Utd", 262514:"Man City", 6697062:"Brighton", 4047743:"Man Utd", 957:"Man City", 247071:"Liverpool", 2513453:"Man City", 2232819:"Arsenal", 4242417:"Spurs", 5859886:"Liverpool", 1256987:"Chelsea", 6621645:"Spurs", 4081730:"Arsenal"}[id]`
 
 ## Output
 ### Text

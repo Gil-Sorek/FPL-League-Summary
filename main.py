@@ -7,15 +7,15 @@ GW Summary for Fantasy Premier-League (FPL)
 
 import requests
 import math
+import random
 import matplotlib.pyplot as plt
 from io import BytesIO
 from matplotlib.ticker import MaxNLocator
 from PIL import Image, ImageDraw, ImageFont
         
 def get_player_webname(id): return players_stats[id]['web_name']
-# def get_team_name(id): return team_name[id]
-def get_team_name(id): return {4399125:"Avidan", 1606327:"Itamar", 262514:"Ginosar", 6697062:"Amit", 4047743:"Fuji", 957:"Gool", 247071:"Woolf", 2513453:"Talash", 2232819:"Vaknin", 4242417:"Buchris", 5859886:"Adi", 1256987:"Casyopa", 6621645:"Pellinho", 4081730:"Oren", 409287:"Tomer", 4536384:"Gloter", 350212:"Gissin", 7492779:"Asaf", 4703751:"Tal"}[id]
-# def get_club(id): return {4399125:"Arsenal", 1606327:"Man Utd", 262514:"Man City", 6697062:"Brighton", 4047743:"Man Utd", 957:"Man City", 247071:"Liverpool", 2513453:"Man City", 2232819:"Arsenal", 4242417:"Tottenham", 5859886:"Liverpool", 1256987:"Chelsea", 6621645:"Tottenham", 4081730:"Arsenal", 409287:"Tomer", 4536384:"Gloter", 350212:"Gissin", 7492779:"Asaf", 4703751:"Tal"}[id]
+def get_team_name(id): return team_name[id]
+def get_club(id): return manager_fav_club[id]
 def get_chip_name(chip): return {'bboost': "Bench-Boost", 'freehit': "Free-Hit", 'wildcard': "Wildcard", '3xc': "Triple-Captain"}[chip]
 def element_type_to_pos(type): return {1: "GK", 2: "DEF", 3: "MID", 4: "FWD"}[type]
 def generate_league_plot():
@@ -886,14 +886,18 @@ league_data = requests.get(f'https://fantasy.premierleague.com/api/leagues-class
 fpl_data = requests.get('https://fantasy.premierleague.com/api/bootstrap-static/').json()
 e = next(event for event in fpl_data['events'] if event['is_current'])
 gw = e['id']
+teams_id = {team['id']: team['name'] for team in fpl_data['teams']}
 weekly_stats = {}
 gw_data = {}
 weekly_picks = {}
+manager_fav_club = {}
 for manager in league_data['standings']['results']:
     id = manager['entry']
     weekly_stats[id] = requests.get(f'https://fantasy.premierleague.com/api/entry/{id}/history/').json()
     gw_data[id] = requests.get(f'https://fantasy.premierleague.com/api/entry/{id}/event/{gw}/picks/').json()
     weekly_picks[id] = {i: requests.get(f'https://fantasy.premierleague.com/api/entry/{id}/event/{i}/picks/').json()['picks'] for i in range(1,gw+1)}
+    fav_club = requests.get(f'https://fantasy.premierleague.com/api/entry/{id}').json()['favourite_team']
+    manager_fav_club[id] = teams_id[fav_club] if fav_club is not None else random.choice([value for value in teams_id.values()])
 
 # Setup datasets
 team_name, total_points, rank, rank_chg, value_gain, green_streaks, pos_total_points = {}, {}, {}, {}, {}, {}, {pos: {} for pos in ['GK','DEF','MID','FWD']}
@@ -1118,4 +1122,4 @@ for j in range(len(dict_list_sorted), len(axes)):
     fig.delaxes(axes[j])
 plt.suptitle(f"{league_data['league']['name']} - Gameweek {gw}", fontsize=24)
 plt.tight_layout()
-plt.savefig(f"GW{gw}.png", format="png", bbox_inches="tight")
+plt.savefig(f"GW{gw}_Comparison.png", format="png", bbox_inches="tight")
