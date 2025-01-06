@@ -26,6 +26,21 @@ Compare your ranks and points, including team value, hits, captain points, bench
 Set 'league_id' variable into your league's personal ID.
 The league ID can be found within the fantasy website url under 'Leagues & Cups' after choosing your league
 ![League ID](images/league_id.png)
+<p>⚠️ Tested on 14 managers league. Ideally use with up to 20 managers for best results</p>
+
+## Advanced Options
+### Managers Nickname
+For cleaner visuals, you may supply a dictionary with manager ids as keys and nicknames as values.
+For example, I used the following dictionary to create the visuals
+`def get_team_name(id): return {4399125:"Avidan", 1606327:"Itamar", 262514:"Ginosar", 6697062:"Amit", 4047743:"Fuji", 957:"Gool", 247071:"Woolf", 2513453:"Talash", 2232819:"Vaknin", 4242417:"Buchris", 5859886:"Adi", 1256987:"Casyopa", 6621645:"Pellinho", 4081730:"Oren"}[id]`
+
+### Highlight Managers
+In case you want to highlight individual managers within the [Managers Comparison](#fpl-league-summary) plot,
+you can supply a dictionary with manager ids as keys and colors as values.
+For example, I used the following dictionary to create the visuals
+`highlight_keys = {957: "lime", 262514: "hotpink", 247071: "red", 2513453: "darkorange"}`
+
+### Fan Shirts (Work In Progress)
 
 ## Output
 ### Text
@@ -58,4 +73,6 @@ Most MID Points: Talash (592 Points)
 Most FWD Points: Adi (367 Points)
 ```
 
-### Plot ([as shown above](#fpl-league-summary))
+### Managers Comparison ([as shown above](#fpl-league-summary))
+### Category Leaders
+![Leading Managers per Category](images/GW20_Highlights.png)
