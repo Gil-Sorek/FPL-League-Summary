@@ -28,7 +28,7 @@ The league ID can be found within the fantasy website url under 'Leagues & Cups'
 ![League ID](images/league_id.png)
 
 ## Output
-1. Text
+### Text
 ```
 ** Mishtolelim in FPL GW 18:
 Standings: (1) Ginosar (2) Gool (3) Casyopa
@@ -58,4 +58,4 @@ Most MID Points: Talash (592 Points)
 Most FWD Points: Adi (367 Points)
 ```
 
-2. Plot ([as shown above](#fpl-league-summary))
+### Plot ([as shown above](#fpl-league-summary))
