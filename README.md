@@ -27,7 +27,7 @@ You will need to follow the steps below to download and install required package
 
 - Clone the repository
 
-`git clone https://github.com/Gil-Sorek/FPL-League-Summary.git fpl-league-summary`
+`git clone https://github.com/gil-sorek/FPL-League-Summary.git fpl-league-summary`
 
 - Install required packages
 
